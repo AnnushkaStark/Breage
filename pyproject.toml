@@ -1,0 +1,74 @@
+[project]
+name = "matrix-synapse-hub"
+version = "0.1.0"
+description = "High-performance asynchronous Matrix Synapse gateway with distributed task queues"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.31.0",
+    "sqlalchemy[asyncio]>=2.0.35",
+    "asyncpg>=0.29.0",
+    "redis>=5.0.8",
+    "taskiq>=0.11.6",
+    "taskiq-redis>=0.5.8",
+    "matrix-nio[e2e]>=0.24.0",
+    "telethon>=1.36.0",
+    "playwright>=1.47.0",
+    "pydantic[email]>=2.9.2",
+    "pydantic-settings>=2.5.2",
+    "fastapi-mail>=1.4.1",
+    "fastapi-filter>=1.1.0",
+    "fastapi-pagination[sqlalchemy]>=0.12.26",
+    "alembic>=1.20.0",
+    "loguru>=0.7.3",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6.5",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+]
+
+[tool.ruff]
+line-length = 79
+target-version = "py312"
+extend-include = ["src"]
+exclude = [
+    "src/migrations",
+    "tests/conftest.py",
+    "tests/fixtures/query.py"
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "SIM"
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.ty]
+
+[tool.ty.src]
+include = ["src"]
+
+
+[tool.ty.terminal]
+error-on-warning = true
+output-format = "concise"
+
+[tool.ty.environment]
+python-version = "3.12"
+
