@@ -8,3 +8,12 @@ class MessangerSessionBase(BaseModel):
     account_identifier: str
     session_data: dict
     is_active: bool
+
+
+class TgAuthCodeRequest(BaseModel):
+    phone: str
+
+
+class TgCode(BaseModel):
+    phone: str
+    code: str

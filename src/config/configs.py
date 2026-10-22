@@ -19,5 +19,11 @@ class RedisSettings(BaseSetting):
     REDIS_URL: str = "redis://redis:6379/0"
 
 
+class TGSettings(BaseSetting):
+    APP_ID: str
+    APP_SECRET: str
+
+
 redis_settings = RedisSettings()
 db_settings = DBSettings()
+tg_settings = TGSettings()
