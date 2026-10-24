@@ -12,6 +12,12 @@ class DBSettings(BaseSetting):
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
 
+    SYNAPSE_PG_HOST: str
+    SYNAPSE_PG_PORT: int
+    SYNAPSE_PG_DB: str
+    SYNAPSE_PG_USER: str
+    SYNAPSE_PG_PASSWORD: str
+
 
 class RedisSettings(BaseSetting):
     HOST: str = "redis"

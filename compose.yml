@@ -3,12 +3,29 @@ services:
     image: postgres:15-alpine
     container_name: synapse-db
     restart: always
+    ports:
+      - "5433:5432"
     environment:
-      POSTGRES_DB: synapse
-      POSTGRES_USER: synapse_user
-      POSTGRES_PASSWORD: synapse_db
+      POSTGRES_DB: $SYNAPSE_PG_DB
+      POSTGRES_USER: $SYNAPSE_PG_USER
+      POSTGRES_PASSWORD: $SYNAPSE_PG_PASSWORD
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - synapse_postgres_data:/var/lib/postgresql/data
+    networks:
+      - matrix-net
+
+  app-db:
+    image: postgres:15-alpine
+    container_name: app-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - app_postgres_data:/var/lib/postgresql/data
     networks:
       - matrix-net
 
@@ -49,8 +66,14 @@ services:
     depends_on:
       - synapse-server
       - redis-broker
+      - app-db
+      - synapse-db
     networks:
       - matrix-net
+
+volumes:
+  synapse_postgres_data:
+  app_postgres_data:
 
 networks:
   matrix-net:

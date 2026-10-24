@@ -28,7 +28,11 @@ class TelegramClient:
 
         if not self.tg_client:
             self.tg_client = TelegramClient(
-                self.session, self.app_id, self.app_secret
+                self.session,
+                self.app_id,
+                self.app_secret,
+                auto_reconnect=True,
+                connection_retries=10,
             )
 
         if not self.tg_client.is_connected():

@@ -22,19 +22,19 @@ env_values = dotenv_values(source_dir) | os.environ
 section = config.config_ini_section
 
 config.set_section_option(
-    section, "DB_USER", env_values.get("DB_USER")
+    section, "POSTGRES_USER", env_values.get("POSTGRES_USER")
 )
 config.set_section_option(
-    section, "DB_PASSWORD", env_values.get("DB_PASSWORD")
+    section, "POSTGRES_PASSWORD", env_values.get("POSTGRES_PASSWORD")
 )
 config.set_section_option(
-    section, "DB_HOST", env_values.get("DB_HOST")
+    section, "POSTGRES_HOST", env_values.get("POSTGRES_HOST")
 )
 config.set_section_option(
-    section, "DB_PORT", str(env_values.get("DB_PORT", 5432))
+    section, "POSTGRES_PORT", str(env_values.get("POSTGRES_PORT", 5432))
 )
 config.set_section_option(
-    section, "DB_DATABASE", env_values.get("DB_DATABASE")
+    section, "POSTGRES_DB", env_values.get("POSTGRES_DB")
 )
 
 if config.config_file_name is not None:
